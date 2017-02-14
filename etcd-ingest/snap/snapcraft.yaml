@@ -1,0 +1,29 @@
+name: etcd
+version: 'ingest-0.5'
+summary: Use the 'ingest' track to bring classic etcd into a snap
+description: |
+  This is a special channel track for etcd, which serves only to backup your
+  existing deb based etcd content and initiate the conversion to snap-based
+  etcd storage. It is part of the upgrade cycle. Switch to the appropriate
+  track of etcd (2.3, 3.0, 3.1) then keep switching up as desired.
+
+  This track does not actually contain etcd, only the ingestion tools in
+  classic confinement. When you switch to the versioned track you will then
+  launch etcd with the ingested data.
+
+grade: stable
+confinement: classic
+
+apps:
+  ingest:
+    command: ingest
+
+
+parts:
+  etcd-ingestor:
+    # See 'snapcraft plugins'
+    plugin: dump
+    source: .
+    stage:
+      - 'ingest'
+

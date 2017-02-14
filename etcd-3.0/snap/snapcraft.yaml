@@ -1,0 +1,37 @@
+name: etcd
+version: '3.0.17'
+summary: Resilient key-value store by CoreOS
+description: |
+  Etcd is a high availability key-value store, implementing the RAFT
+  algorithm to deal with failover within the etcd cluster.  Popular
+  in the Docker community as a shared store of small but important
+  data in a distributed application.
+confinement: strict
+grade: stable
+
+apps:
+  etcd:
+    daemon: simple
+    command: snap-wrap.sh
+    plugs: [ network-bind ]
+  etcdctl:
+    command: etcdctl
+    plugs: [ home, network-bind ]
+
+parts:
+  etcd:
+    plugin: dump
+    source: https://github.com/coreos/etcd/releases/download/v3.0.17/etcd-v3.0.17-linux-amd64.tar.gz
+    install: |
+      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+      cp etcd $SNAPCRAFT_PART_INSTALL/bin/
+      cp etcdctl $SNAPCRAFT_PART_INSTALL/bin/
+    stage:
+      - bin/etcd
+      - bin/etcdctl
+  etcd-wrapper:
+    plugin: dump
+    source: .
+    stage:
+      - bin/snap-wrap.sh
+      - etcd.conf.yml.sample
