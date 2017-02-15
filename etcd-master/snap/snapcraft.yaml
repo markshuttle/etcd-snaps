@@ -1,16 +1,16 @@
 name: etcd
-version: '3.0+git'
+version: '3.1+master'
 summary: Resilient key-value store by CoreOS
 description: |
   Etcd is a high availability key-value store, implementing the RAFT
-  algorithm to deal with failover within the etcd cluster.  Popular
-  in the Docker community as a shared store of small but important
-  data in a distributed application.
+  algorithm to deal with failover within the etcd cluster. Popular
+  as a store of small but important data in distributed systems.
 confinement: strict
-grade: stable
+grade: devel
 
 apps:
   etcd:
+    daemon: simple
     command: snap-wrap.sh
     plugs: [ network-bind ]
   etcdctl:
@@ -21,8 +21,10 @@ parts:
   etcd:
     plugin: go
     source: http://github.com/coreos/etcd.git
-    source-tag: release-3.0
     go-importpath: github.com/coreos/etcd
+    stage:
+     - bin/etcd
+     - bin/etcdctl
   etcd-wrapper:
     plugin: dump
     source: .
