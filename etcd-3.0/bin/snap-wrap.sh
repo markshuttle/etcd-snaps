@@ -4,11 +4,11 @@
 
 # Use the system writable dir if run as root
 if [[ $EUID -ne 0 ]]; then
-  DATA_DIR=$SNAP_USER_DATA
+  DATA_DIR=$(dirname $SNAP_USER_DATA)/current
   CONF_DIR=$SNAP_USER_COMMON
   echo "Running as user with data in $DATA_DIR"
 else
-  DATA_DIR=$SNAP_DATA
+  DATA_DIR=$(dirname $SNAP_DATA)/current
   CONF_DIR=$SNAP_COMMON
   echo "Running as system with data in $DATA_DIR"
 fi
