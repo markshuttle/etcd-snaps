@@ -1,5 +1,5 @@
 name: etcd
-version: '2.3.7'
+version: '2.3.8'
 summary: Resilient key-value store by CoreOS
 description: |
   Etcd is a high availability key-value store, implementing the RAFT
@@ -21,7 +21,7 @@ apps:
 parts:
   etcd:
     plugin: dump
-    source: https://github.com/coreos/etcd/releases/download/v2.3.7/etcd-v2.3.7-linux-amd64.tar.gz
+    source: https://github.com/coreos/etcd/releases/download/v2.3.8/etcd-v2.3.8-linux-amd64.tar.gz
     install: |
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin
       cp etcd $SNAPCRAFT_PART_INSTALL/bin/
