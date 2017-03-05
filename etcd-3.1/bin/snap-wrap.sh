@@ -1,5 +1,6 @@
 #! /bin/bash
 
+set -eu
 # Prepare ETCD environment variables
 
 # Use the system writable dir if run as root
@@ -29,6 +30,7 @@ TARGET_CONF=$CONF_DIR/etcd.conf.yml
 if [ -e $TARGET_CONF ]; then
   echo "Configuration from $TARGET_CONF"
 else
+  cp $SNAP/etcd.conf.yml.sample $SNAP_COMMON/etcd.conf.yml.sample
   echo "No config found, please create one at $TARGET_CONF"
   echo "See $SNAP/etcd.conf.yml.sample for an example."
   exit 0
