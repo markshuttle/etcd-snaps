@@ -8,6 +8,10 @@ description: |
 confinement: strict
 grade: devel
 
+# pending a fix to snapd environment variable handling
+# environment:
+#   ETCDCTL_API: 3
+
 apps:
   etcd:
     daemon: simple
