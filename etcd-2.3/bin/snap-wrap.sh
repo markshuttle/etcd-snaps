@@ -13,19 +13,28 @@ else
   echo "Running as system wih data in $DATA_DIR"
 fi
 
+
 # Migrate older config to new location
 if [ -e $DATA_DIR/etcd.conf ]; then
   echo "Moving configuration to $CONF_DIR"
   mv $DATA_DIR/etcd.conf $CONF_DIR/
 fi
 
+
 # See if there is a configuration file
 TARGET_CONF=$CONF_DIR/etcd.conf
+FALLBACK_CONFIG="${TARGET_CONF}.2x"
 if [ -e $TARGET_CONF ]; then
   # The desired configuration file is already in place
   echo "Configuration from $TARGET_CONF"
   set -o allexport
   . $TARGET_CONF
+  set +o allexport
+elif [ -e $FALLBACK_CONFIG ]; then
+  # We've migrated and reverted to a 2.x series state
+  echo "Configuration from fallback ${TARGET_CONF}.2x"
+  set -o allexport
+  . "${TARGET_CONF}.2x"
   set +o allexport
 else
   echo "Please install config at $TARGET_CONF, then restart snap.etcd"
