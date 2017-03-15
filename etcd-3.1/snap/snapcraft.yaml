@@ -16,7 +16,7 @@ apps:
   etcd:
     daemon: simple
     command: snap-wrap.sh
-    plugs: [ network-bind ]
+    plugs: [ network-bind, removable-media ]
   etcdctl:
     command: etcdctl
     plugs: [ home, network-bind ]
