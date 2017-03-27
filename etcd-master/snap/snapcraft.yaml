@@ -8,8 +8,8 @@ description: |
 confinement: strict
 grade: devel
 
-environment:
-  ETCDCTL_API: 3
+#environment:
+#  ETCDCTL_API: 3
 
 apps:
   etcd:
