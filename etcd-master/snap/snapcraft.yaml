@@ -19,6 +19,8 @@ apps:
   etcdctl:
     command: etcdctl
     plugs: [ home, network-bind ]
+    aliases:
+      - etcdctl
 
 parts:
   etcd:
