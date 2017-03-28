@@ -2,4 +2,5 @@
 */parts
 */prime
 */stage
+*.xdelta3
 */*/*/__pycache__
