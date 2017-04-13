@@ -1,3 +1,2 @@
 
  * comprehensive migration of all etcd options from 2.x to 3.x
- * alias for etcdctl
