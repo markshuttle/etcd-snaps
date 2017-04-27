@@ -3,4 +3,5 @@
 */prime
 */stage
 *.xdelta3
+*.xdelta3-[0-9]*
 */*/*/__pycache__
