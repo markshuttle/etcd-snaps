@@ -68,7 +68,6 @@ class GoPlugin(snapcraft.BasePlugin):
 
     def __init__(self, name, options, project):
         super().__init__(name, options, project)
-        self.build_packages.append('golang-1.7-go')
         self._gopath = os.path.join(self.partdir, 'go')
         self._gopath_src = os.path.join(self._gopath, 'src')
         self._gopath_bin = os.path.join(self._gopath, 'bin')
@@ -76,7 +75,7 @@ class GoPlugin(snapcraft.BasePlugin):
 
     @property
     def go_bin(self):
-        return '/usr/lib/go-1.7/bin/go'
+        return '/snap/bin/go'
 
     def pull(self):
         # use -d to only download (build will happen later)
