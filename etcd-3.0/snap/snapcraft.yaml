@@ -3,9 +3,8 @@ version: '3.0.17'
 summary: Resilient key-value store by CoreOS
 description: |
   Etcd is a high availability key-value store, implementing the RAFT
-  algorithm to deal with failover within the etcd cluster.  Popular
-  in the Docker community as a shared store of small but important
-  data in a distributed application.
+  algorithm to deal with failover within the etcd cluster. Popular
+  as a store of small but important data in distributed systems.
 confinement: strict
 grade: stable
 
@@ -17,6 +16,8 @@ apps:
   etcdctl:
     command: etcdctl
     plugs: [ home, network-bind ]
+    aliases:
+      - etcdctl
 
 parts:
   etcd:
